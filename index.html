@@ -74,11 +74,24 @@
     }
 
     .topbar {
-      position: absolute;
-      inset: 14px 0 auto;
-      z-index: 5;
-      background: transparent;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0;
+      background: #ffffff;
+      box-shadow: 0 2px 24px rgba(0, 0, 0, 0.09);
+      opacity: 0;
+      transform: translateY(-100%);
       pointer-events: none;
+      transition: opacity 0.32s ease, transform 0.32s ease;
+    }
+
+    .topbar.scrolled {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
 
     .topbar-inner {
@@ -86,21 +99,14 @@
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      min-height: 58px;
+      min-height: 64px;
       padding: 0 24px;
-      border: 1px solid rgba(147, 197, 253, 0.18);
-      border-radius: 999px;
-      background: rgba(4, 15, 45, 0.58);
-      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.16);
-      backdrop-filter: blur(14px);
-      pointer-events: auto;
-      animation: navDrop 700ms ease both;
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
-      color: var(--white);
+      color: var(--ink);
       font-size: 19px;
       font-weight: 300;
       text-decoration: none;
@@ -110,10 +116,9 @@
 
     .brand-logo-mark {
       display: block;
-      width: 92px;
+      width: 48px;
       height: 48px;
-      background: url("public/assets/logo.png") center / 220% no-repeat;
-      filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.32));
+      background: url("public/assets/logo.png") center / contain no-repeat;
     }
 
     .nav {
@@ -127,10 +132,10 @@
       place-items: center;
       width: 42px;
       height: 42px;
-      border: 1px solid rgba(147, 197, 253, 0.22);
+      border: 1px solid rgba(27, 64, 128, 0.18);
       border-radius: 50%;
-      color: var(--gold-soft);
-      background: rgba(255, 255, 255, 0.03);
+      color: var(--green-700);
+      background: transparent;
       cursor: pointer;
     }
 
@@ -140,7 +145,7 @@
 
     .nav a {
       position: relative;
-      color: rgba(255, 255, 255, 0.82);
+      color: var(--muted);
       text-decoration: none;
       font-size: 11.5px;
       font-weight: 500;
@@ -156,14 +161,14 @@
       right: 0;
       bottom: -8px;
       height: 1px;
-      background: var(--gold-soft);
+      background: var(--gold);
       opacity: 0;
       transform: scaleX(0.35);
       transition: opacity 180ms ease, transform 180ms ease;
     }
 
     .nav a:hover {
-      color: var(--white);
+      color: var(--ink);
     }
 
     .nav a:hover::after {
@@ -215,10 +220,10 @@
       min-width: 398px;
       min-height: 76px;
       padding: 0 34px;
-      border: 1px solid rgba(147, 197, 253, 0.34);
+      border: 1px solid rgba(147, 197, 253, 0.42);
       border-radius: 22px;
-      background: linear-gradient(180deg, rgba(29, 78, 162, 0.9), rgba(22, 65, 148, 0.94));
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 12px 26px rgba(0, 0, 0, 0.16);
+      background: linear-gradient(180deg, rgba(29, 78, 162, 0.94), rgba(22, 65, 148, 0.98));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 14px 30px rgba(29, 78, 216, 0.2), 0 12px 26px rgba(0, 0, 0, 0.16);
       color: var(--white);
       text-decoration: none;
       font-size: 17px;
@@ -232,7 +237,7 @@
       position: absolute;
       inset: -40% auto -40% -35%;
       width: 34%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.24), transparent);
       transform: skewX(-18deg);
       transition: left 520ms ease;
       pointer-events: none;
@@ -240,9 +245,9 @@
 
     .button:hover {
       transform: translateY(-3px);
-      background: linear-gradient(180deg, rgba(37, 99, 185, 0.94), rgba(28, 80, 160, 0.98));
-      border-color: rgba(147, 197, 253, 0.58);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 18px 34px rgba(0, 0, 0, 0.22);
+      background: linear-gradient(180deg, rgba(37, 99, 185, 0.98), rgba(28, 80, 160, 1));
+      border-color: rgba(191, 219, 254, 0.68);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 20px 38px rgba(29, 78, 216, 0.28), 0 18px 34px rgba(0, 0, 0, 0.22);
     }
 
     .button:hover::before {
@@ -270,7 +275,7 @@
     .button > svg,
     .button .glyph,
     .button .lucide {
-      color: var(--gold-soft);
+      color: rgba(219, 234, 254, 0.96);
     }
 
     .glyph {
@@ -768,11 +773,19 @@
 
     .contact-grid {
       display: grid;
-      grid-template-columns: 320px minmax(370px, 470px) 1fr;
+      grid-template-columns: 320px minmax(370px, 470px) 260px;
       gap: 44px;
       align-items: center;
       min-height: 272px;
       padding: 42px 0 26px;
+    }
+
+    .footer-main-logo {
+      width: 160px;
+      height: 160px;
+      background: url("public/assets/logo.png") center / contain no-repeat;
+      filter: drop-shadow(0 0 18px rgba(59, 130, 246, 0.36));
+      justify-self: start;
     }
 
     .contact h2 {
@@ -847,30 +860,6 @@
       text-align: center;
     }
 
-    .footer-brand {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 8px;
-      color: rgba(255, 255, 255, 0.82);
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .footer-brand strong {
-      color: var(--sage);
-    }
-
-    .footer-logo {
-      width: 30px;
-      height: 30px;
-      object-fit: contain;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 5px;
-    }
-
     @media (max-width: 960px) {
       .wrap { width: min(var(--wrap), calc(100% - 40px)); }
       .topbar-inner { min-height: 58px; }
@@ -933,17 +922,21 @@
         gap: 24px;
         align-items: start;
       }
+      .footer-main-logo {
+        width: 120px;
+        height: 120px;
+      }
     }
 
     @media (max-width: 640px) {
       .wrap { width: min(var(--wrap), calc(100% - 32px)); }
-      .brand { font-size: 22px; }
-      .brand-logo {
-        width: 32px;
-        height: 32px;
+      .brand {
+        min-width: 78px;
+        height: 42px;
       }
-      .topbar {
-        inset: 12px 0 auto;
+      .brand-logo-mark {
+        width: 42px;
+        height: 42px;
       }
       .topbar .wrap {
         position: relative;
@@ -1086,6 +1079,10 @@
       .degree {
         grid-template-columns: 64px 1fr;
       }
+      .footer-main-logo {
+        width: 100px;
+        height: 100px;
+      }
       .footer-zone {
         background:
           linear-gradient(180deg, rgba(4, 12, 35, 0.9), rgba(5, 18, 50, 0.72)),
@@ -1093,16 +1090,6 @@
       }
     }
 
-    @keyframes navDrop {
-      from {
-        opacity: 0;
-        transform: translateY(-12px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
 
     @keyframes fadeRise {
       from {
@@ -1160,40 +1147,39 @@
   </style>
 </head>
 <body id="top">
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top" aria-label="Noemi Ganev">
+        <span class="brand-logo-mark" aria-hidden="true"></span>
+      </a>
+      <nav class="nav" aria-label="Navegação principal">
+        <a href="#servicos">Serviços</a>
+        <a href="#trajetoria">Trajetória</a>
+        <a href="#formacao">Formação</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-label="Abrir menu">
+        <i data-lucide="menu" aria-hidden="true"></i>
+      </button>
+      <nav class="mobile-menu" aria-label="Navegação mobile">
+        <a href="#servicos">Serviços</a>
+        <a href="#trajetoria">Trajetória</a>
+        <a href="#formacao">Formação</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
   <main class="page">
     <section class="hero" aria-label="Apresentação">
-      <header class="topbar">
-        <div class="wrap topbar-inner">
-          <a class="brand" href="#top" aria-label="Noemi Ganev">
-            <img class="brand-logo" src="public/assets/logo.png" alt="">
-            <span class="brand-name">Noemi <strong>Ganev</strong></span>
-          </a>
-          <nav class="nav" aria-label="Navegação principal">
-            <a href="#servicos">Serviços</a>
-            <a href="#trajetoria">Trajetória</a>
-            <a href="#formacao">Formação</a>
-            <a href="#contato">Contato</a>
-          </nav>
-          <button class="menu-toggle" type="button" aria-label="Abrir menu">
-            <i data-lucide="menu" aria-hidden="true"></i>
-          </button>
-          <nav class="mobile-menu" aria-label="Navegação mobile">
-            <a href="#servicos">Serviços</a>
-            <a href="#trajetoria">Trajetória</a>
-            <a href="#formacao">Formação</a>
-            <a href="#contato">Contato</a>
-          </nav>
-        </div>
-      </header>
 
       <div class="wrap">
         <div class="hero-content">
           <h1>Noemi <span>Ganev</span></h1>
           <p>Mais de 25 anos estruturando departamentos de pessoal e recursos humanos em empresas de setores estratégico, hospitalar, imobiliário e de participações, da rotina operacional à gestão estratégica de pessoas.</p>
           <p class="hero-copy-mobile">Consultoria estratégica em RH e Departamento Pessoal para empresas que precisam de segurança, conformidade e agilidade.</p>
-          <a class="button" href="mailto:noemi.ganev@gmail.com?subject=Solicita%C3%A7%C3%A3o%20de%20proposta">
-            <i data-lucide="calendar-days" aria-hidden="true"></i>
-            Solicite uma proposta
+          <a class="button" href="https://wa.me/5511998150724?text=Ol%C3%A1%2C%20Noemi%21%20Quero%20falar%20sobre%20uma%20solu%C3%A7%C3%A3o%20para%20RH%20e%20Departamento%20Pessoal%20da%20minha%20empresa." target="_blank" rel="noopener">
+            <i data-lucide="message-circle" aria-hidden="true"></i>
+            Fale com a Noemi
             <i data-lucide="arrow-right" aria-hidden="true"></i>
           </a>
         </div>
@@ -1310,6 +1296,7 @@
       <section class="contact" id="contato">
         <div class="wrap contact-grid">
           <div>
+            <div class="footer-main-logo" aria-hidden="true"></div>
             <h2>Vamos conversar sobre o seu <span>RH?</span></h2>
             <p>Atendimento estratégico para fortalecer sua empresa com segurança, conformidade e foco em resultados.</p>
           </div>
@@ -1319,9 +1306,9 @@
               <a class="contact-row" href="mailto:noemi.ganev@gmail.com"><i data-lucide="mail" aria-hidden="true"></i><span>noemi.ganev@gmail.com</span></a>
               <div class="contact-row"><i data-lucide="map-pin" aria-hidden="true"></i><span>Osasco - SP<br>Atendimento presencial e remoto</span></div>
             </div>
-            <a class="button" href="mailto:noemi.ganev@gmail.com?subject=Solicita%C3%A7%C3%A3o%20de%20proposta">
-              <i data-lucide="calendar-days" aria-hidden="true"></i>
-              Solicite uma proposta
+            <a class="button" href="https://wa.me/5511998150724?text=Ol%C3%A1%2C%20Noemi%21%20Quero%20falar%20sobre%20uma%20solu%C3%A7%C3%A3o%20para%20RH%20e%20Departamento%20Pessoal%20da%20minha%20empresa." target="_blank" rel="noopener">
+              <i data-lucide="message-circle" aria-hidden="true"></i>
+              Fale com a Noemi
               <i data-lucide="arrow-right" aria-hidden="true"></i>
             </a>
           </div>
@@ -1329,10 +1316,6 @@
         </div>
       </section>
       <footer class="site-footer">
-        <div class="footer-brand">
-          <img class="footer-logo" src="public/assets/logo.png" alt="">
-          <span>Noemi <strong>Ganev</strong></span>
-        </div>
         <div>Noemi Ganev Consultoria e Gestão LTDA - Todos os direitos reservados</div>
       </footer>
     </section>
@@ -1342,6 +1325,14 @@
     window.addEventListener("DOMContentLoaded", function () {
       if (window.lucide) {
         window.lucide.createIcons();
+      }
+
+      // ── Navbar scroll reveal ──
+      var topbar = document.querySelector(".topbar");
+      if (topbar) {
+        window.addEventListener("scroll", function () {
+          topbar.classList.toggle("scrolled", window.scrollY > 60);
+        }, { passive: true });
       }
 
       var toggle = document.querySelector(".menu-toggle");
