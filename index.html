@@ -99,8 +99,8 @@
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      min-height: 64px;
-      padding: 0 24px;
+      min-height: 108px;
+      padding: 0 32px;
     }
 
     .brand {
@@ -110,14 +110,14 @@
       font-size: 19px;
       font-weight: 300;
       text-decoration: none;
-      min-width: 92px;
-      height: 48px;
+      min-width: 100px;
+      height: 100px;
     }
 
     .brand-logo-mark {
       display: block;
-      width: 48px;
-      height: 48px;
+      width: 100px;
+      height: 100px;
       background: url("public/assets/logo.png") center / contain no-repeat;
     }
 
@@ -147,10 +147,9 @@
       position: relative;
       color: var(--muted);
       text-decoration: none;
-      font-size: 11.5px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
       transition: color 180ms ease;
     }
 
@@ -213,49 +212,81 @@
     .button {
       display: inline-grid;
       position: relative;
-      grid-auto-flow: column;
-      grid-template-columns: 24px auto 24px;
+      grid-template-columns: 1fr 92px;
       align-items: center;
-      gap: 16px;
-      min-width: 398px;
-      min-height: 76px;
-      padding: 0 34px;
-      border: 1px solid rgba(147, 197, 253, 0.42);
-      border-radius: 22px;
-      background: linear-gradient(180deg, rgba(29, 78, 162, 0.94), rgba(22, 65, 148, 0.98));
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 14px 30px rgba(29, 78, 216, 0.2), 0 12px 26px rgba(0, 0, 0, 0.16);
-      color: var(--white);
+      min-width: 390px;
+      min-height: 70px;
+      padding: 0 0 0 34px;
+      border: 1px solid rgba(255, 255, 255, 0.76);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.54), 0 16px 34px rgba(0, 0, 0, 0.18);
+      color: #101826;
       text-decoration: none;
       font-size: 17px;
-      font-weight: 600;
+      font-weight: 700;
+      isolation: isolate;
       overflow: hidden;
-      transition: transform 220ms ease, background 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+      animation: buttonPulse 1900ms ease-in-out infinite;
+      transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, color 220ms ease;
     }
 
     .button::before {
       content: "";
       position: absolute;
-      inset: -40% auto -40% -35%;
-      width: 34%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.24), transparent);
-      transform: skewX(-18deg);
-      transition: left 520ms ease;
+      inset: 0;
+      width: 0;
+      background: linear-gradient(90deg, #164194, #1d5fb8);
+      z-index: 0;
+      transition: width 420ms ease;
       pointer-events: none;
     }
 
     .button:hover {
       transform: translateY(-3px);
-      background: linear-gradient(180deg, rgba(37, 99, 185, 0.98), rgba(28, 80, 160, 1));
-      border-color: rgba(191, 219, 254, 0.68);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 20px 38px rgba(29, 78, 216, 0.28), 0 18px 34px rgba(0, 0, 0, 0.22);
+      border-color: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 20px 38px rgba(29, 78, 216, 0.2), 0 18px 34px rgba(0, 0, 0, 0.2);
+      color: var(--white);
+      animation-play-state: paused;
     }
 
     .button:hover::before {
-      left: 108%;
+      width: 100%;
     }
 
     .button:active {
       transform: translateY(-1px);
+    }
+
+    .button-label,
+    .button-arrow {
+      position: relative;
+      z-index: 1;
+    }
+
+    .button-arrow {
+      display: grid;
+      align-self: stretch;
+      place-items: center;
+      border-left: 1px solid rgba(22, 65, 148, 0.16);
+      background: rgba(255, 255, 255, 0.98);
+      color: #164194;
+      transition: background 220ms ease, color 220ms ease, border-color 220ms ease;
+    }
+
+    .button:hover .button-arrow {
+      border-color: rgba(255, 255, 255, 0.34);
+      background: transparent;
+      color: var(--white);
+    }
+
+    @keyframes buttonPulse {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.48), 0 16px 34px rgba(0, 0, 0, 0.18);
+      }
+      50% {
+        box-shadow: 0 0 0 12px rgba(255, 255, 255, 0), 0 16px 34px rgba(0, 0, 0, 0.18);
+      }
     }
 
     .button svg,
@@ -275,7 +306,7 @@
     .button > svg,
     .button .glyph,
     .button .lucide {
-      color: rgba(219, 234, 254, 0.96);
+      color: currentColor;
     }
 
     .glyph {
@@ -931,12 +962,12 @@
     @media (max-width: 640px) {
       .wrap { width: min(var(--wrap), calc(100% - 32px)); }
       .brand {
-        min-width: 78px;
-        height: 42px;
+        min-width: 72px;
+        height: 72px;
       }
       .brand-logo-mark {
-        width: 42px;
-        height: 42px;
+        width: 72px;
+        height: 72px;
       }
       .topbar .wrap {
         position: relative;
@@ -1011,12 +1042,10 @@
       }
       .button {
         width: min(100%, 310px);
-        min-height: 52px;
-        grid-template-columns: 22px auto 22px;
-        padding: 0 18px;
-        border-radius: 14px;
+        min-height: 58px;
+        grid-template-columns: 1fr 64px;
+        padding-left: 22px;
         font-size: 13px;
-        gap: 12px;
       }
       .stats {
         margin-top: -36px;
@@ -1177,10 +1206,9 @@
           <h1>Noemi <span>Ganev</span></h1>
           <p>Mais de 25 anos estruturando departamentos de pessoal e recursos humanos em empresas de setores estratégico, hospitalar, imobiliário e de participações, da rotina operacional à gestão estratégica de pessoas.</p>
           <p class="hero-copy-mobile">Consultoria estratégica em RH e Departamento Pessoal para empresas que precisam de segurança, conformidade e agilidade.</p>
-          <a class="button" href="https://wa.me/5511998150724?text=Ol%C3%A1%2C%20Noemi%21%20Quero%20falar%20sobre%20uma%20solu%C3%A7%C3%A3o%20para%20RH%20e%20Departamento%20Pessoal%20da%20minha%20empresa." target="_blank" rel="noopener">
-            <i data-lucide="message-circle" aria-hidden="true"></i>
-            Fale com a Noemi
-            <i data-lucide="arrow-right" aria-hidden="true"></i>
+          <a class="button" href="https://wa.me/5511998150724?text=Ol%C3%A1%2C%20Noemi%21%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20RH%20e%20Departamento%20Pessoal%20da%20minha%20empresa." target="_blank" rel="noopener">
+            <span class="button-label">Agendar avaliação</span>
+            <span class="button-arrow"><i data-lucide="arrow-right" aria-hidden="true"></i></span>
           </a>
         </div>
       </div>
@@ -1306,10 +1334,9 @@
               <a class="contact-row" href="mailto:noemi.ganev@gmail.com"><i data-lucide="mail" aria-hidden="true"></i><span>noemi.ganev@gmail.com</span></a>
               <div class="contact-row"><i data-lucide="map-pin" aria-hidden="true"></i><span>Osasco - SP<br>Atendimento presencial e remoto</span></div>
             </div>
-            <a class="button" href="https://wa.me/5511998150724?text=Ol%C3%A1%2C%20Noemi%21%20Quero%20falar%20sobre%20uma%20solu%C3%A7%C3%A3o%20para%20RH%20e%20Departamento%20Pessoal%20da%20minha%20empresa." target="_blank" rel="noopener">
-              <i data-lucide="message-circle" aria-hidden="true"></i>
-              Fale com a Noemi
-              <i data-lucide="arrow-right" aria-hidden="true"></i>
+            <a class="button" href="https://wa.me/5511998150724?text=Ol%C3%A1%2C%20Noemi%21%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20RH%20e%20Departamento%20Pessoal%20da%20minha%20empresa." target="_blank" rel="noopener">
+              <span class="button-label">Agendar avaliação</span>
+              <span class="button-arrow"><i data-lucide="arrow-right" aria-hidden="true"></i></span>
             </a>
           </div>
           <div aria-hidden="true"></div>
