@@ -13,19 +13,19 @@
     * { margin: 0; }
 
     :root {
-      --green-950: #061f1c;
-      --green-900: #082a25;
-      --green-850: #0d322b;
-      --green-800: #123c34;
-      --green-700: #2f5f4f;
-      --sage: #83a57b;
-      --gold: #c0874f;
-      --gold-soft: #dcc29d;
-      --cream: #f7f2ea;
-      --cream-strong: #f2ece3;
-      --ink: #161a18;
-      --muted: #525953;
-      --line: rgba(192, 135, 79, 0.35);
+      --green-950: #060d1e;
+      --green-900: #091528;
+      --green-850: #0d1e3c;
+      --green-800: #112648;
+      --green-700: #1b4080;
+      --sage: #4d8fd4;
+      --gold: #2d6fe0;
+      --gold-soft: #93c5fd;
+      --cream: #f0f5ff;
+      --cream-strong: #e8effc;
+      --ink: #0f1520;
+      --muted: #4a5a72;
+      --line: rgba(59, 130, 246, 0.35);
       --white: #ffffff;
       --wrap: 1180px;
       --shadow: 0 24px 46px rgba(0, 0, 0, 0.18);
@@ -69,7 +69,7 @@
       position: absolute;
       inset: auto 0 0;
       height: 110px;
-      background: linear-gradient(180deg, rgba(6, 31, 28, 0), rgba(6, 31, 28, 0.18));
+      background: linear-gradient(180deg, rgba(5, 18, 50, 0), rgba(5, 18, 50, 0.18));
       pointer-events: none;
     }
 
@@ -88,9 +88,9 @@
       gap: 24px;
       min-height: 58px;
       padding: 0 24px;
-      border: 1px solid rgba(220, 194, 157, 0.18);
+      border: 1px solid rgba(147, 197, 253, 0.18);
       border-radius: 999px;
-      background: rgba(5, 29, 25, 0.58);
+      background: rgba(4, 15, 45, 0.58);
       box-shadow: 0 18px 38px rgba(0, 0, 0, 0.16);
       backdrop-filter: blur(14px);
       pointer-events: auto;
@@ -98,15 +98,22 @@
     }
 
     .brand {
+      display: inline-flex;
+      align-items: center;
       color: var(--white);
       font-size: 19px;
       font-weight: 300;
       text-decoration: none;
+      min-width: 92px;
+      height: 48px;
     }
 
-    .brand span {
-      color: var(--sage);
-      font-weight: 600;
+    .brand-logo-mark {
+      display: block;
+      width: 92px;
+      height: 48px;
+      background: url("public/assets/logo.png") center / 220% no-repeat;
+      filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.32));
     }
 
     .nav {
@@ -120,7 +127,7 @@
       place-items: center;
       width: 42px;
       height: 42px;
-      border: 1px solid rgba(220, 194, 157, 0.22);
+      border: 1px solid rgba(147, 197, 253, 0.22);
       border-radius: 50%;
       color: var(--gold-soft);
       background: rgba(255, 255, 255, 0.03);
@@ -208,9 +215,9 @@
       min-width: 398px;
       min-height: 76px;
       padding: 0 34px;
-      border: 1px solid rgba(220, 194, 157, 0.34);
+      border: 1px solid rgba(147, 197, 253, 0.34);
       border-radius: 22px;
-      background: linear-gradient(180deg, rgba(58, 100, 82, 0.9), rgba(46, 87, 70, 0.94));
+      background: linear-gradient(180deg, rgba(29, 78, 162, 0.9), rgba(22, 65, 148, 0.94));
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 12px 26px rgba(0, 0, 0, 0.16);
       color: var(--white);
       text-decoration: none;
@@ -233,8 +240,8 @@
 
     .button:hover {
       transform: translateY(-3px);
-      background: linear-gradient(180deg, rgba(68, 113, 93, 0.94), rgba(51, 96, 77, 0.98));
-      border-color: rgba(220, 194, 157, 0.58);
+      background: linear-gradient(180deg, rgba(37, 99, 185, 0.94), rgba(28, 80, 160, 0.98));
+      border-color: rgba(147, 197, 253, 0.58);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 18px 34px rgba(0, 0, 0, 0.22);
     }
 
@@ -312,9 +319,9 @@
       grid-template-columns: repeat(3, 1fr);
       min-height: 170px;
       padding: 26px 40px;
-      border: 1px solid rgba(220, 194, 157, 0.2);
+      border: 1px solid rgba(147, 197, 253, 0.2);
       border-radius: 22px;
-      background: rgba(8, 40, 34, 0.96);
+      background: rgba(6, 20, 55, 0.96);
       box-shadow: var(--shadow);
       backdrop-filter: blur(12px);
       animation: fadeRise 850ms ease 300ms both;
@@ -326,7 +333,7 @@
       align-items: center;
       gap: 24px;
       padding: 0 26px;
-      border-left: 1px solid rgba(220, 194, 157, 0.22);
+      border-left: 1px solid rgba(147, 197, 253, 0.22);
       min-width: 0;
     }
 
@@ -361,9 +368,9 @@
       width: 86px;
       height: 86px;
       border-radius: 50%;
-      border: 1px solid rgba(220, 194, 157, 0.42);
+      border: 1px solid rgba(147, 197, 253, 0.42);
       color: var(--gold-soft);
-      background: radial-gradient(circle at 50% 30%, rgba(131, 165, 123, 0.24), rgba(25, 67, 56, 0.72));
+      background: radial-gradient(circle at 50% 30%, rgba(77, 143, 212, 0.24), rgba(15, 40, 100, 0.72));
       justify-self: center;
       transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
     }
@@ -404,7 +411,7 @@
     }
 
     .eyebrow {
-      color: #c06d3d;
+      color: #2d6fe0;
       font-size: 16px;
       font-weight: 600;
       margin-bottom: 8px;
@@ -422,7 +429,7 @@
     .intro p {
       max-width: 430px;
       font-size: 18px;
-      color: #232724;
+      color: #1a2035;
       line-height: 1.55;
     }
 
@@ -435,13 +442,13 @@
       padding: 38px;
       border-radius: 22px;
       background: rgba(255, 255, 255, 0.72);
-      box-shadow: 0 22px 52px rgba(36, 27, 18, 0.12);
+      box-shadow: 0 22px 52px rgba(18, 27, 60, 0.12);
       transition: transform 220ms ease, box-shadow 220ms ease;
     }
 
     .diagnosis:hover {
       transform: translateY(-4px);
-      box-shadow: 0 28px 62px rgba(36, 27, 18, 0.15);
+      box-shadow: 0 28px 62px rgba(18, 27, 60, 0.15);
     }
 
     .check {
@@ -517,9 +524,9 @@
       gap: 18px;
       min-height: 138px;
       padding: 18px 24px 18px 12px;
-      border: 1px solid rgba(220, 194, 157, 0.16);
+      border: 1px solid rgba(147, 197, 253, 0.16);
       border-radius: 16px;
-      background: rgba(9, 47, 40, 0.54);
+      background: rgba(7, 24, 65, 0.54);
       overflow: hidden;
       transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
     }
@@ -528,7 +535,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 12% 18%, rgba(220, 194, 157, 0.12), transparent 38%);
+      background: radial-gradient(circle at 12% 18%, rgba(147, 197, 253, 0.12), transparent 38%);
       opacity: 0;
       transition: opacity 220ms ease;
       pointer-events: none;
@@ -536,8 +543,8 @@
 
     .service:hover {
       transform: translateY(-4px);
-      border-color: rgba(220, 194, 157, 0.34);
-      background: rgba(12, 55, 47, 0.72);
+      border-color: rgba(147, 197, 253, 0.34);
+      background: rgba(10, 30, 80, 0.72);
     }
 
     .service:hover::after {
@@ -548,7 +555,7 @@
     .stat:hover .icon,
     .degree:hover .icon {
       transform: translateY(-2px) scale(1.04);
-      border-color: rgba(220, 194, 157, 0.68);
+      border-color: rgba(147, 197, 253, 0.68);
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
     }
 
@@ -591,8 +598,8 @@
       align-items: center;
       gap: 22px;
       min-height: 52px;
-      border-bottom: 1px solid rgba(192, 135, 79, 0.22);
-      color: #333834;
+      border-bottom: 1px solid rgba(59, 130, 246, 0.22);
+      color: #2a3548;
       font-size: 16px;
       transition: color 180ms ease, transform 180ms ease;
     }
@@ -610,8 +617,8 @@
       width: 30px;
       height: 30px;
       border-radius: 50%;
-      border: 1.5px solid #c06d3d;
-      color: #c06d3d;
+      border: 1.5px solid #2d6fe0;
+      color: #2d6fe0;
       flex: 0 0 auto;
     }
 
@@ -646,7 +653,7 @@
       right: 0;
       top: 9px;
       height: 1px;
-      background: rgba(220, 194, 157, 0.76);
+      background: rgba(147, 197, 253, 0.76);
     }
 
     .moment {
@@ -665,13 +672,13 @@
       border-radius: 50%;
       background: var(--sage);
       transform: translateX(-50%);
-      box-shadow: 0 0 0 4px rgba(131, 165, 123, 0.12);
+      box-shadow: 0 0 0 4px rgba(77, 143, 212, 0.12);
       transition: box-shadow 220ms ease, transform 220ms ease;
     }
 
     .moment:hover::before {
       transform: translateX(-50%) scale(1.15);
-      box-shadow: 0 0 0 7px rgba(131, 165, 123, 0.16);
+      box-shadow: 0 0 0 7px rgba(77, 143, 212, 0.16);
     }
 
     .moment time {
@@ -745,7 +752,7 @@
 
     .footer-zone {
       background:
-        linear-gradient(90deg, rgba(4, 22, 20, 0.92) 0%, rgba(6, 31, 28, 0.74) 42%, rgba(6, 31, 28, 0.08) 100%),
+        linear-gradient(90deg, rgba(4, 12, 35, 0.92) 0%, rgba(5, 18, 50, 0.74) 42%, rgba(5, 18, 50, 0.08) 100%),
         url("public/assets/footer-bg.png") right top / cover no-repeat;
       background-size: auto, 104%;
       transition: background-size 600ms ease;
@@ -775,7 +782,7 @@
       margin-bottom: 14px;
     }
 
-    .contact h2 span { color: #d96f3e; }
+    .contact h2 span { color: #93c5fd; }
 
     .contact p {
       color: rgba(255, 255, 255, 0.8);
@@ -785,9 +792,9 @@
     }
 
     .contact-card {
-      border: 1px solid rgba(220, 194, 157, 0.22);
+      border: 1px solid rgba(147, 197, 253, 0.22);
       border-radius: 16px;
-      background: rgba(9, 47, 40, 0.72);
+      background: rgba(7, 24, 65, 0.72);
       overflow: hidden;
       backdrop-filter: blur(8px);
       transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
@@ -795,8 +802,8 @@
 
     .contact-card:hover {
       transform: translateY(-3px);
-      border-color: rgba(220, 194, 157, 0.38);
-      background: rgba(9, 47, 40, 0.82);
+      border-color: rgba(147, 197, 253, 0.38);
+      background: rgba(7, 24, 65, 0.82);
     }
 
     .contact-row {
@@ -805,7 +812,7 @@
       align-items: center;
       min-height: 60px;
       padding: 0 24px;
-      border-bottom: 1px solid rgba(220, 194, 157, 0.14);
+      border-bottom: 1px solid rgba(147, 197, 253, 0.14);
       text-decoration: none;
       font-size: 15px;
       color: rgba(255, 255, 255, 0.94);
@@ -834,10 +841,34 @@
     }
 
     .site-footer {
-      padding: 10px 0 22px;
+      padding: 12px 0 24px;
       color: rgba(255, 255, 255, 0.52);
       font-size: 12px;
       text-align: center;
+    }
+
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .footer-brand strong {
+      color: var(--sage);
+    }
+
+    .footer-logo {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 5px;
     }
 
     @media (max-width: 960px) {
@@ -881,7 +912,7 @@
       }
       .stat {
         border-left: 0;
-        border-top: 1px solid rgba(220, 194, 157, 0.18);
+        border-top: 1px solid rgba(147, 197, 253, 0.18);
         padding: 18px 0;
       }
       .stat:first-child { border-top: 0; }
@@ -907,6 +938,10 @@
     @media (max-width: 640px) {
       .wrap { width: min(var(--wrap), calc(100% - 32px)); }
       .brand { font-size: 22px; }
+      .brand-logo {
+        width: 32px;
+        height: 32px;
+      }
       .topbar {
         inset: 12px 0 auto;
       }
@@ -925,9 +960,9 @@
         display: grid;
         gap: 2px;
         padding: 10px;
-        border: 1px solid rgba(220, 194, 157, 0.16);
+        border: 1px solid rgba(147, 197, 253, 0.16);
         border-radius: 18px;
-        background: rgba(5, 29, 25, 0.88);
+        background: rgba(4, 15, 45, 0.88);
         box-shadow: 0 18px 34px rgba(0, 0, 0, 0.18);
         backdrop-filter: blur(14px);
         opacity: 0;
@@ -1053,7 +1088,7 @@
       }
       .footer-zone {
         background:
-          linear-gradient(180deg, rgba(4, 22, 20, 0.9), rgba(6, 31, 28, 0.72)),
+          linear-gradient(180deg, rgba(4, 12, 35, 0.9), rgba(5, 18, 50, 0.72)),
           url("public/assets/footer-bg.png") center / cover no-repeat;
       }
     }
@@ -1129,7 +1164,10 @@
     <section class="hero" aria-label="Apresentação">
       <header class="topbar">
         <div class="wrap topbar-inner">
-          <a class="brand" href="#top">Noemi <span>Ganev</span></a>
+          <a class="brand" href="#top" aria-label="Noemi Ganev">
+            <img class="brand-logo" src="public/assets/logo.png" alt="">
+            <span class="brand-name">Noemi <strong>Ganev</strong></span>
+          </a>
           <nav class="nav" aria-label="Navegação principal">
             <a href="#servicos">Serviços</a>
             <a href="#trajetoria">Trajetória</a>
@@ -1291,7 +1329,11 @@
         </div>
       </section>
       <footer class="site-footer">
-        Noemi Ganev Consultoria e Gestão LTDA - Todos os direitos reservados
+        <div class="footer-brand">
+          <img class="footer-logo" src="public/assets/logo.png" alt="">
+          <span>Noemi <strong>Ganev</strong></span>
+        </div>
+        <div>Noemi Ganev Consultoria e Gestão LTDA - Todos os direitos reservados</div>
       </footer>
     </section>
   </main>
