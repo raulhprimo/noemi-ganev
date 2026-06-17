@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noemi Ganev | Consultoria em RH e Departamento Pessoal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    * { margin: 0; }
+
+    :root {
+      --green-950: #061f1c;
+      --green-900: #082a25;
+      --green-850: #0d322b;
+      --green-800: #123c34;
+      --green-700: #2f5f4f;
+      --sage: #83a57b;
+      --gold: #c0874f;
+      --gold-soft: #dcc29d;
+      --cream: #f7f2ea;
+      --cream-strong: #f2ece3;
+      --ink: #161a18;
+      --muted: #525953;
+      --line: rgba(192, 135, 79, 0.35);
+      --white: #ffffff;
+      --wrap: 1180px;
+      --shadow: 0 24px 46px rgba(0, 0, 0, 0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-width: 320px;
+      font-family: "Sora", sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.5;
+    }
+
+    a { color: inherit; }
+
+    .page { overflow: hidden; }
+
+    .wrap {
+      width: min(var(--wrap), calc(100% - 56px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 850px;
+      color: var(--white);
+      background-image: url("public/assets/banner-hero.png");
+      background-position: center top;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .hero::before {
+      content: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 110px;
+      background: linear-gradient(180deg, rgba(6, 31, 28, 0), rgba(6, 31, 28, 0.18));
+      pointer-events: none;
+    }
+
+    .topbar {
+      position: absolute;
+      inset: 14px 0 auto;
+      z-index: 5;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 58px;
+      padding: 0 24px;
+      border: 1px solid rgba(220, 194, 157, 0.18);
+      border-radius: 999px;
+      background: rgba(5, 29, 25, 0.58);
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.16);
+      backdrop-filter: blur(14px);
+      pointer-events: auto;
+      animation: navDrop 700ms ease both;
+    }
+
+    .brand {
+      color: var(--white);
+      font-size: 19px;
+      font-weight: 300;
+      text-decoration: none;
+    }
+
+    .brand span {
+      color: var(--sage);
+      font-weight: 600;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .menu-toggle {
+      display: none;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(220, 194, 157, 0.22);
+      border-radius: 50%;
+      color: var(--gold-soft);
+      background: rgba(255, 255, 255, 0.03);
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    .nav a {
+      position: relative;
+      color: rgba(255, 255, 255, 0.82);
+      text-decoration: none;
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 180ms ease;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -8px;
+      height: 1px;
+      background: var(--gold-soft);
+      opacity: 0;
+      transform: scaleX(0.35);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .nav a:hover {
+      color: var(--white);
+    }
+
+    .nav a:hover::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: min(620px, 100%);
+      padding: 190px 0 210px;
+      animation: fadeRise 850ms ease 140ms both;
+    }
+
+    .hero-copy-mobile {
+      display: none;
+    }
+
+    .hero h1 {
+      font-size: clamp(74px, 8vw, 102px);
+      font-weight: 300;
+      line-height: 0.9;
+      margin-bottom: 36px;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--sage);
+      font-weight: 600;
+    }
+
+    .hero p {
+      width: min(540px, 100%);
+      font-size: clamp(18px, 2vw, 24px);
+      font-weight: 300;
+      line-height: 1.58;
+      margin-bottom: 42px;
+      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.28);
+    }
+
+    .button {
+      display: inline-grid;
+      position: relative;
+      grid-auto-flow: column;
+      grid-template-columns: 24px auto 24px;
+      align-items: center;
+      gap: 16px;
+      min-width: 398px;
+      min-height: 76px;
+      padding: 0 34px;
+      border: 1px solid rgba(220, 194, 157, 0.34);
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(58, 100, 82, 0.9), rgba(46, 87, 70, 0.94));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 12px 26px rgba(0, 0, 0, 0.16);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 600;
+      overflow: hidden;
+      transition: transform 220ms ease, background 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+    }
+
+    .button::before {
+      content: "";
+      position: absolute;
+      inset: -40% auto -40% -35%;
+      width: 34%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+      transform: skewX(-18deg);
+      transition: left 520ms ease;
+      pointer-events: none;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(180deg, rgba(68, 113, 93, 0.94), rgba(51, 96, 77, 0.98));
+      border-color: rgba(220, 194, 157, 0.58);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 18px 34px rgba(0, 0, 0, 0.22);
+    }
+
+    .button:hover::before {
+      left: 108%;
+    }
+
+    .button:active {
+      transform: translateY(-1px);
+    }
+
+    .button svg,
+    .mini-check svg,
+    .check svg,
+    .lucide {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex: 0 0 auto;
+    }
+
+    .button > svg,
+    .button .glyph,
+    .button .lucide {
+      color: var(--gold-soft);
+    }
+
+    .glyph {
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      color: currentColor;
+      flex: 0 0 auto;
+    }
+
+    .glyph svg {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      display: block;
+    }
+
+    .glyph .lucide,
+    .icon .lucide {
+      width: 100%;
+      height: 100%;
+      color: currentColor;
+    }
+
+    .contact-row > .lucide {
+      width: 24px;
+      height: 24px;
+      color: var(--gold-soft);
+      justify-self: center;
+    }
+
+    .stats {
+      position: relative;
+      z-index: 3;
+      margin-top: -112px;
+      color: var(--white);
+    }
+
+    .stats-panel {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      min-height: 170px;
+      padding: 26px 40px;
+      border: 1px solid rgba(220, 194, 157, 0.2);
+      border-radius: 22px;
+      background: rgba(8, 40, 34, 0.96);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      animation: fadeRise 850ms ease 300ms both;
+    }
+
+    .stat {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      align-items: center;
+      gap: 24px;
+      padding: 0 26px;
+      border-left: 1px solid rgba(220, 194, 157, 0.22);
+      min-width: 0;
+    }
+
+    .stat:first-child {
+      border-left: 0;
+      padding-left: 0;
+    }
+
+    .stat:last-child { padding-right: 0; }
+
+    .stat strong {
+      display: block;
+      font-size: clamp(42px, 4vw, 58px);
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat span {
+      display: block;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.42;
+    }
+
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      border: 1px solid rgba(220, 194, 157, 0.42);
+      color: var(--gold-soft);
+      background: radial-gradient(circle at 50% 30%, rgba(131, 165, 123, 0.24), rgba(25, 67, 56, 0.72));
+      justify-self: center;
+      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+    }
+
+    .stat .icon,
+    .degree .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-soft);
+    }
+
+    .icon .glyph {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon > .lucide {
+      width: 30px;
+      height: 30px;
+      display: block;
+    }
+
+    .intro {
+      padding: 90px 0;
+      background: linear-gradient(180deg, var(--cream) 0%, var(--cream-strong) 100%);
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr minmax(380px, 560px);
+      gap: 70px;
+      align-items: center;
+      animation: fadeRise 800ms ease both;
+    }
+
+    .eyebrow {
+      color: #c06d3d;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: clamp(30px, 4vw, 44px);
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .intro h2 { margin-bottom: 18px; }
+
+    .intro p {
+      max-width: 430px;
+      font-size: 18px;
+      color: #232724;
+      line-height: 1.55;
+    }
+
+    .diagnosis {
+      display: grid;
+      grid-template-columns: 94px 1fr;
+      gap: 28px;
+      align-items: center;
+      min-height: 196px;
+      padding: 38px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 22px 52px rgba(36, 27, 18, 0.12);
+      transition: transform 220ms ease, box-shadow 220ms ease;
+    }
+
+    .diagnosis:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 28px 62px rgba(36, 27, 18, 0.15);
+    }
+
+    .check {
+      display: grid;
+      place-items: center;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 3px solid var(--green-700);
+      color: var(--green-700);
+    }
+
+    .check svg {
+      width: 38px;
+      height: 38px;
+    }
+
+    .diagnosis strong {
+      display: block;
+      max-width: 370px;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.34;
+      margin-bottom: 10px;
+    }
+
+    .diagnosis span {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    .services {
+      padding: 90px 0;
+      color: var(--white);
+      background: var(--green-900);
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .section-heading h2 {
+      display: inline-block;
+      position: relative;
+      font-size: clamp(25px, 3vw, 34px);
+      font-weight: 400;
+    }
+
+    .section-heading h2::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -12px;
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      transform: translateX(-50%);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px 18px;
+    }
+
+    .service {
+      position: relative;
+      display: grid;
+      grid-template-columns: 106px 1fr;
+      align-items: center;
+      gap: 18px;
+      min-height: 138px;
+      padding: 18px 24px 18px 12px;
+      border: 1px solid rgba(220, 194, 157, 0.16);
+      border-radius: 16px;
+      background: rgba(9, 47, 40, 0.54);
+      overflow: hidden;
+      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+    }
+
+    .service::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 12% 18%, rgba(220, 194, 157, 0.12), transparent 38%);
+      opacity: 0;
+      transition: opacity 220ms ease;
+      pointer-events: none;
+    }
+
+    .service:hover {
+      transform: translateY(-4px);
+      border-color: rgba(220, 194, 157, 0.34);
+      background: rgba(12, 55, 47, 0.72);
+    }
+
+    .service:hover::after {
+      opacity: 1;
+    }
+
+    .service:hover .icon,
+    .stat:hover .icon,
+    .degree:hover .icon {
+      transform: translateY(-2px) scale(1.04);
+      border-color: rgba(220, 194, 157, 0.68);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+    }
+
+    .service h3 {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.28;
+      margin-bottom: 6px;
+    }
+
+    .service p {
+      max-width: 336px;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.45;
+    }
+
+    .why {
+      padding: 70px 0;
+      background: var(--cream);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 58px;
+      align-items: center;
+    }
+
+    .why h2 span { color: var(--green-700); }
+
+    .reasons {
+      border-left: 1px solid var(--line);
+      padding-left: 54px;
+    }
+
+    .reason {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      min-height: 52px;
+      border-bottom: 1px solid rgba(192, 135, 79, 0.22);
+      color: #333834;
+      font-size: 16px;
+      transition: color 180ms ease, transform 180ms ease;
+    }
+
+    .reason:hover {
+      color: var(--green-700);
+      transform: translateX(4px);
+    }
+
+    .reason:last-child { border-bottom: 0; }
+
+    .mini-check {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1.5px solid #c06d3d;
+      color: #c06d3d;
+      flex: 0 0 auto;
+    }
+
+    .mini-check svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .timeline {
+      padding: 90px 0;
+      color: var(--white);
+      background: var(--green-900);
+    }
+
+    .timeline h2 {
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 400;
+      margin-bottom: 34px;
+    }
+
+    .timeline-track {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 18px;
+      position: relative;
+    }
+
+    .timeline-track::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 9px;
+      height: 1px;
+      background: rgba(220, 194, 157, 0.76);
+    }
+
+    .moment {
+      position: relative;
+      padding-top: 34px;
+      text-align: center;
+    }
+
+    .moment::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--sage);
+      transform: translateX(-50%);
+      box-shadow: 0 0 0 4px rgba(131, 165, 123, 0.12);
+      transition: box-shadow 220ms ease, transform 220ms ease;
+    }
+
+    .moment:hover::before {
+      transform: translateX(-50%) scale(1.15);
+      box-shadow: 0 0 0 7px rgba(131, 165, 123, 0.16);
+    }
+
+    .moment time {
+      display: block;
+      color: var(--sage);
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .moment strong {
+      display: block;
+      color: rgba(255, 255, 255, 0.96);
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.35;
+    }
+
+    .education {
+      padding: 70px 0;
+      background: var(--cream);
+    }
+
+    .education-grid {
+      display: grid;
+      grid-template-columns: 220px repeat(3, 1fr);
+      align-items: center;
+      gap: 32px;
+    }
+
+    .education h2 {
+      font-size: clamp(28px, 3vw, 34px);
+      font-weight: 400;
+    }
+
+    .degree {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      align-items: center;
+      gap: 18px;
+      min-height: 104px;
+      padding-left: 28px;
+      border-left: 1px solid var(--line);
+    }
+
+    .degree .icon {
+      width: 64px;
+      height: 64px;
+      background: var(--green-800);
+    }
+
+    .degree time {
+      display: block;
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .degree strong {
+      display: block;
+      font-size: 13px;
+      line-height: 1.34;
+      margin-bottom: 3px;
+    }
+
+    .degree span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.34;
+    }
+
+    .footer-zone {
+      background:
+        linear-gradient(90deg, rgba(4, 22, 20, 0.92) 0%, rgba(6, 31, 28, 0.74) 42%, rgba(6, 31, 28, 0.08) 100%),
+        url("public/assets/footer-bg.png") right top / cover no-repeat;
+      background-size: auto, 104%;
+      transition: background-size 600ms ease;
+    }
+
+    .footer-zone:hover {
+      background-size: auto, 107%;
+    }
+
+    .contact {
+      color: var(--white);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 320px minmax(370px, 470px) 1fr;
+      gap: 44px;
+      align-items: center;
+      min-height: 272px;
+      padding: 42px 0 26px;
+    }
+
+    .contact h2 {
+      font-size: clamp(30px, 4vw, 44px);
+      font-weight: 300;
+      line-height: 1.16;
+      margin-bottom: 14px;
+    }
+
+    .contact h2 span { color: #d96f3e; }
+
+    .contact p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.58;
+    }
+
+    .contact-card {
+      border: 1px solid rgba(220, 194, 157, 0.22);
+      border-radius: 16px;
+      background: rgba(9, 47, 40, 0.72);
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(220, 194, 157, 0.38);
+      background: rgba(9, 47, 40, 0.82);
+    }
+
+    .contact-row {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      align-items: center;
+      min-height: 60px;
+      padding: 0 24px;
+      border-bottom: 1px solid rgba(220, 194, 157, 0.14);
+      text-decoration: none;
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.94);
+      transition: background 180ms ease;
+    }
+
+    .contact-row:hover {
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .contact-row:last-child { border-bottom: 0; }
+
+    .contact-row .glyph {
+      width: 24px;
+      height: 24px;
+      color: var(--gold-soft);
+    }
+
+    .contact .button {
+      width: 100%;
+      min-width: 0;
+      margin-top: 12px;
+      min-height: 62px;
+      border-radius: 16px;
+      font-size: 15px;
+    }
+
+    .site-footer {
+      padding: 10px 0 22px;
+      color: rgba(255, 255, 255, 0.52);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 960px) {
+      .wrap { width: min(var(--wrap), calc(100% - 40px)); }
+      .topbar-inner { min-height: 58px; }
+      .nav { display: none; }
+      .menu-toggle { display: grid; }
+      .hero {
+        min-height: 760px;
+        background-image: url("public/assets/banner-hero-mobile.png");
+        background-position: center top;
+        background-size: cover;
+        background-repeat: no-repeat;
+        animation: none;
+      }
+      .hero::before {
+        content: none;
+      }
+      .hero-content {
+        width: min(620px, 100%);
+        min-height: 760px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 120px 0 150px;
+      }
+      .button { min-width: 0; }
+      .stats {
+        margin-top: -62px;
+      }
+      .stats-panel,
+      .intro-grid,
+      .services-grid,
+      .why-grid,
+      .education-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .stats-panel {
+        padding: 16px 24px;
+      }
+      .stat {
+        border-left: 0;
+        border-top: 1px solid rgba(220, 194, 157, 0.18);
+        padding: 18px 0;
+      }
+      .stat:first-child { border-top: 0; }
+      .reasons {
+        border-left: 0;
+        padding-left: 0;
+      }
+      .timeline-track {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px 18px;
+      }
+      .timeline-track::before { display: none; }
+      .degree {
+        border-left: 0;
+        padding-left: 0;
+      }
+      .contact-grid {
+        gap: 24px;
+        align-items: start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { width: min(var(--wrap), calc(100% - 32px)); }
+      .brand { font-size: 22px; }
+      .topbar {
+        inset: 12px 0 auto;
+      }
+      .topbar .wrap {
+        position: relative;
+      }
+      .topbar-inner {
+        padding: 0 18px 0 22px;
+        min-height: 56px;
+      }
+      .mobile-menu {
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 0;
+        right: 0;
+        display: grid;
+        gap: 2px;
+        padding: 10px;
+        border: 1px solid rgba(220, 194, 157, 0.16);
+        border-radius: 18px;
+        background: rgba(5, 29, 25, 0.88);
+        box-shadow: 0 18px 34px rgba(0, 0, 0, 0.18);
+        backdrop-filter: blur(14px);
+        opacity: 0;
+        transform: translateY(-6px);
+        pointer-events: none;
+        transition: opacity 180ms ease, transform 180ms ease;
+      }
+      .mobile-menu.is-open {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      .mobile-menu a {
+        min-height: 42px;
+        display: flex;
+        align-items: center;
+        padding: 0 12px;
+        border-radius: 12px;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+      .mobile-menu a:hover {
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .hero {
+        min-height: 820px;
+        background-position: center top;
+      }
+      .hero-content {
+        width: 100%;
+        min-height: 820px;
+        padding: 108px 0 132px;
+      }
+      .hero h1 {
+        display: none;
+      }
+      .hero p {
+        display: none;
+      }
+      .hero .hero-copy-mobile {
+        display: block;
+        max-width: 310px;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.45;
+        width: 100%;
+        margin-bottom: 20px;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.36);
+      }
+      .button {
+        width: min(100%, 310px);
+        min-height: 52px;
+        grid-template-columns: 22px auto 22px;
+        padding: 0 18px;
+        border-radius: 14px;
+        font-size: 13px;
+        gap: 12px;
+      }
+      .stats {
+        margin-top: -36px;
+      }
+      .stats-panel {
+        border-radius: 18px;
+        padding: 14px 20px;
+      }
+      .stat {
+        grid-template-columns: 70px 1fr;
+        gap: 16px;
+      }
+      .icon {
+        width: 62px;
+        height: 62px;
+      }
+      .button svg {
+        width: 20px;
+        height: 20px;
+      }
+      .icon .glyph {
+        width: 24px;
+        height: 24px;
+      }
+      .icon > .lucide {
+        width: 24px;
+        height: 24px;
+      }
+      .contact-row .glyph {
+        width: 20px;
+        height: 20px;
+      }
+      .contact-row > .lucide {
+        width: 20px;
+        height: 20px;
+      }
+      .intro,
+      .why {
+        padding: 54px 0;
+      }
+      .diagnosis {
+        grid-template-columns: 1fr;
+        padding: 28px;
+      }
+      .service {
+        grid-template-columns: 76px 1fr;
+        padding: 16px;
+      }
+      .service h3 { font-size: 17px; }
+      .timeline-track { grid-template-columns: 1fr; }
+      .moment {
+        text-align: left;
+        padding: 0 0 0 30px;
+      }
+      .moment::before {
+        left: 0;
+        top: 5px;
+        transform: none;
+      }
+      .degree {
+        grid-template-columns: 64px 1fr;
+      }
+      .footer-zone {
+        background:
+          linear-gradient(180deg, rgba(4, 22, 20, 0.9), rgba(6, 31, 28, 0.72)),
+          url("public/assets/footer-bg.png") center / cover no-repeat;
+      }
+    }
+
+    @keyframes navDrop {
+      from {
+        opacity: 0;
+        transform: translateY(-12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeRise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ── Scroll reveal ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .r {
+        opacity: 0;
+        transform: translateY(26px);
+        transition:
+          opacity   0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+          transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+        will-change: opacity, transform;
+      }
+      .r.r-left  { transform: translateX(-32px); }
+      .r.r-right { transform: translateX(32px); }
+      .r.visible { opacity: 1; transform: none; }
+    }
+
+    /* ── Bottom blur veil ── */
+    #blur-veil {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 150px;
+      pointer-events: none;
+      z-index: 90;
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.55) 38%, black 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.55) 38%, black 100%);
+      transition: opacity 0.5s ease;
+    }
+    #blur-veil.off { opacity: 0; pointer-events: none; }
+  </style>
+</head>
+<body id="top">
+  <main class="page">
+    <section class="hero" aria-label="Apresentação">
+      <header class="topbar">
+        <div class="wrap topbar-inner">
+          <a class="brand" href="#top">Noemi <span>Ganev</span></a>
+          <nav class="nav" aria-label="Navegação principal">
+            <a href="#servicos">Serviços</a>
+            <a href="#trajetoria">Trajetória</a>
+            <a href="#formacao">Formação</a>
+            <a href="#contato">Contato</a>
+          </nav>
+          <button class="menu-toggle" type="button" aria-label="Abrir menu">
+            <i data-lucide="menu" aria-hidden="true"></i>
+          </button>
+          <nav class="mobile-menu" aria-label="Navegação mobile">
+            <a href="#servicos">Serviços</a>
+            <a href="#trajetoria">Trajetória</a>
+            <a href="#formacao">Formação</a>
+            <a href="#contato">Contato</a>
+          </nav>
+        </div>
+      </header>
+
+      <div class="wrap">
+        <div class="hero-content">
+          <h1>Noemi <span>Ganev</span></h1>
+          <p>Mais de 25 anos estruturando departamentos de pessoal e recursos humanos em empresas de setores estratégico, hospitalar, imobiliário e de participações, da rotina operacional à gestão estratégica de pessoas.</p>
+          <p class="hero-copy-mobile">Consultoria estratégica em RH e Departamento Pessoal para empresas que precisam de segurança, conformidade e agilidade.</p>
+          <a class="button" href="mailto:noemi.ganev@gmail.com?subject=Solicita%C3%A7%C3%A3o%20de%20proposta">
+            <i data-lucide="calendar-days" aria-hidden="true"></i>
+            Solicite uma proposta
+            <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Indicadores">
+      <div class="wrap">
+        <div class="stats-panel">
+          <div class="stat">
+            <span class="icon"><i data-lucide="users-round" aria-hidden="true"></i></span>
+            <div><strong>25+</strong><span>anos de atuação em RH e DP</span></div>
+          </div>
+          <div class="stat">
+            <span class="icon"><i data-lucide="building-2" aria-hidden="true"></i></span>
+            <div><strong>9</strong><span>empresas atendidas em setores distintos</span></div>
+          </div>
+          <div class="stat">
+            <span class="icon"><i data-lucide="shield-check" aria-hidden="true"></i></span>
+            <div><strong>100%</strong><span>conformidade trabalhista e previdenciária</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro">
+      <div class="wrap intro-grid">
+        <div>
+          <p class="eyebrow">Consultoria especializada em</p>
+          <h2>RH & Departamento Pessoal</h2>
+          <p>Transformo processos em segurança, conformidade e vantagem competitiva para o seu negócio.</p>
+        </div>
+        <div class="diagnosis">
+          <span class="check"><i data-lucide="check" aria-hidden="true"></i></span>
+          <div>
+            <strong>Processos de RH complexos exigem estratégia especializada.</strong>
+            <span>Estrutura eficiente, pessoas valorizadas e resultados sustentáveis.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="servicos">
+      <div class="wrap">
+        <div class="section-heading">
+          <h2>Como posso ajudar sua empresa</h2>
+        </div>
+        <div class="services-grid">
+          <article class="service">
+            <span class="icon"><i data-lucide="clipboard-list" aria-hidden="true"></i></span>
+            <div><h3>Folha de Pagamento & Encargos</h3><p>Cálculo preciso e entrega no prazo.</p></div>
+          </article>
+          <article class="service">
+            <span class="icon"><i data-lucide="user-round-check" aria-hidden="true"></i></span>
+            <div><h3>Admissões & Demissões</h3><p>Processos ágeis e seguros, com total conformidade.</p></div>
+          </article>
+          <article class="service">
+            <span class="icon"><i data-lucide="chart-no-axes-combined" aria-hidden="true"></i></span>
+            <div><h3>T&D e Avaliação de Desempenho</h3><p>Desenvolvimento e performance que impulsionam resultados.</p></div>
+          </article>
+          <article class="service">
+            <span class="icon"><i data-lucide="scale" aria-hidden="true"></i></span>
+            <div><h3>Suporte em Ações Trabalhistas & Atuação Como Preposto</h3><p>Defesa técnica e representação em audiências com segurança e estratégia.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="why">
+      <div class="wrap why-grid">
+        <h2>Por que empresas escolhem a <span>Noemi Ganev</span></h2>
+        <div class="reasons">
+          <div class="reason"><span class="mini-check"><i data-lucide="check" aria-hidden="true"></i></span>Visão estratégica e foco em resultados reais</div>
+          <div class="reason"><span class="mini-check"><i data-lucide="check" aria-hidden="true"></i></span>Conformidade total e redução de riscos</div>
+          <div class="reason"><span class="mini-check"><i data-lucide="check" aria-hidden="true"></i></span>Atendimento próximo e soluções sob medida</div>
+          <div class="reason"><span class="mini-check"><i data-lucide="check" aria-hidden="true"></i></span>Experiência sólida em diversos setores</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="timeline" id="trajetoria">
+      <div class="wrap">
+        <h2>Trajetória Profissional</h2>
+        <div class="timeline-track">
+          <div class="moment"><time>1997 - 2004</time><strong>Prátika</strong></div>
+          <div class="moment"><time>2006 - 2010</time><strong>MTM Tecnologia Industrial Ltda</strong></div>
+          <div class="moment"><time>2010 - 2013</time><strong>Brookfield Incorporações Ltda</strong></div>
+          <div class="moment"><time>2013 - 2014</time><strong>Evertec / DASA Participações Ltda</strong></div>
+          <div class="moment"><time>2014 - 2016</time><strong>Analista de Consultoria Autônoma</strong></div>
+          <div class="moment"><time>2016 - Presente</time><strong>Ganev & Ganev Consultoria e Gestão LTDA</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="education" id="formacao">
+      <div class="wrap education-grid">
+        <h2>Formação Acadêmica</h2>
+        <article class="degree">
+          <span class="icon"><i data-lucide="graduation-cap" aria-hidden="true"></i></span>
+          <div><time>2022</time><strong>Pós-graduação em Psicologia Organizacional do Trabalho</strong><span>Centro Universitário Unihorizontes</span></div>
+        </article>
+        <article class="degree">
+          <span class="icon"><i data-lucide="book-open" aria-hidden="true"></i></span>
+          <div><time>2011</time><strong>Graduação em Recursos Humanos</strong><span>Universidade Estácio de Sá</span></div>
+        </article>
+        <article class="degree">
+          <span class="icon"><i data-lucide="calculator" aria-hidden="true"></i></span>
+          <div><time>1994</time><strong>Técnico em Contabilidade</strong><span>ETESC Bento Quirino, Campinas</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="footer-zone">
+      <section class="contact" id="contato">
+        <div class="wrap contact-grid">
+          <div>
+            <h2>Vamos conversar sobre o seu <span>RH?</span></h2>
+            <p>Atendimento estratégico para fortalecer sua empresa com segurança, conformidade e foco em resultados.</p>
+          </div>
+          <div>
+            <div class="contact-card">
+              <a class="contact-row" href="tel:+5511998150724"><i data-lucide="phone" aria-hidden="true"></i><span>(11) 99815-0724</span></a>
+              <a class="contact-row" href="mailto:noemi.ganev@gmail.com"><i data-lucide="mail" aria-hidden="true"></i><span>noemi.ganev@gmail.com</span></a>
+              <div class="contact-row"><i data-lucide="map-pin" aria-hidden="true"></i><span>Osasco - SP<br>Atendimento presencial e remoto</span></div>
+            </div>
+            <a class="button" href="mailto:noemi.ganev@gmail.com?subject=Solicita%C3%A7%C3%A3o%20de%20proposta">
+              <i data-lucide="calendar-days" aria-hidden="true"></i>
+              Solicite uma proposta
+              <i data-lucide="arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+          <div aria-hidden="true"></div>
+        </div>
+      </section>
+      <footer class="site-footer">
+        Noemi Ganev Consultoria e Gestão LTDA - Todos os direitos reservados
+      </footer>
+    </section>
+  </main>
+  <div id="blur-veil" aria-hidden="true"></div>
+  <script>
+    window.addEventListener("DOMContentLoaded", function () {
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+
+      var toggle = document.querySelector(".menu-toggle");
+      var menu = document.querySelector(".mobile-menu");
+      if (toggle && menu) {
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.addEventListener("click", function () {
+          var isOpen = menu.classList.toggle("is-open");
+          toggle.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        menu.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            menu.classList.remove("is-open");
+            toggle.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
+
+      // ── Scroll reveal (bidirectional) ──
+      (function () {
+        if (!("IntersectionObserver" in window)) return;
+
+        var STAGGER = 90;
+        var delays = new Map();
+
+        var selectors = [
+          ".stat",
+          ".intro-grid > div",
+          ".section-heading",
+          ".service",
+          ".why-grid > h2",
+          ".reason",
+          ".timeline .wrap > h2",
+          ".moment",
+          ".education-grid > *",
+          ".contact-grid > div:not([aria-hidden])",
+        ].join(",");
+
+        var els = Array.from(document.querySelectorAll(selectors));
+        els.forEach(function (el) { el.classList.add("r"); });
+
+        // Direções por seção
+        document.querySelectorAll(".intro-grid > div:first-child, .why-grid > h2, .education-grid > h2").forEach(function (el) {
+          el.classList.add("r-left");
+        });
+        document.querySelectorAll(".intro-grid > div:last-child").forEach(function (el) {
+          el.classList.add("r-right");
+        });
+
+        // Stagger delays por grupo
+        [".stats-panel", ".intro-grid", ".services-grid", ".reasons", ".timeline-track", ".education-grid", ".contact-grid"].forEach(function (parentSel) {
+          var parent = document.querySelector(parentSel);
+          if (!parent) return;
+          parent.querySelectorAll(".r").forEach(function (el, i) {
+            var d = i * STAGGER + "ms";
+            el.style.transitionDelay = d;
+            delays.set(el, d);
+          });
+        });
+
+        // Observer bidirecional
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            var el = entry.target;
+            if (entry.isIntersecting) {
+              // Aparece → restaura delay de stagger
+              el.style.transitionDelay = delays.get(el) || "0ms";
+              el.classList.add("visible");
+            } else if (entry.boundingClientRect.top < 0) {
+              // Saiu pelo topo → some sem delay
+              el.style.transitionDelay = "0ms";
+              el.classList.remove("visible");
+            }
+            // Saiu pelo fundo (ainda não apareceu) → não faz nada
+          });
+        }, { threshold: 0.08, rootMargin: "0px 0px -32px 0px" });
+
+        els.forEach(function (el) { observer.observe(el); });
+
+        // ── Blur veil: some ao chegar no footer ──
+        var veil = document.getElementById("blur-veil");
+        if (veil) {
+          var footer = document.querySelector(".site-footer");
+          if (footer) {
+            new IntersectionObserver(function (entries) {
+              entries.forEach(function (e) {
+                veil.classList.toggle("off", e.isIntersecting);
+              });
+            }, { threshold: 0 }).observe(footer);
+          }
+        }
+      })();
+    });
+  </script>
+</body>
+</html>
